@@ -104,3 +104,69 @@ print("是绝对路径:", op.isabs('/home/user'))
 
 # 获取创建时间（Windows）/ 最后状态改变时间（Unix）
 # print("创建时间:", op.getctime('file.txt'))
+
+import time
+
+# ==================== 时间模块常用方法 ====================
+# 获取当前时间戳（自1970年1月1日以来的秒数）
+print("当前时间戳:", time.time())
+
+# 暂停程序执行（秒）
+# time.sleep(1)
+
+# 获取本地时间（结构化时间对象）
+local_time = time.localtime()
+print("本地时间:", local_time)
+print("年:", local_time.tm_year)
+print("月:", local_time.tm_mon)
+print("日:", local_time.tm_mday)
+print("时:", local_time.tm_hour)
+print("分:", local_time.tm_min)
+print("秒:", local_time.tm_sec)
+print("星期:", local_time.tm_wday)  # 0=星期一, 6=星期日
+print("一年中的第几天:", local_time.tm_yday)
+
+# 获取UTC时间
+utc_time = time.gmtime()
+print("UTC时间:", utc_time)
+
+# 将结构化时间转换为时间戳
+print("时间戳转换:", time.mktime(local_time))
+
+# 格式化时间输出
+print("格式化时间:", time.strftime('%Y-%m-%d %H:%M:%S', local_time))
+print("日期格式:", time.strftime('%Y/%m/%d', local_time))
+print("时间格式:", time.strftime('%H:%M:%S', local_time))
+
+# 常用格式化符号：
+# %Y - 四位年份  %y - 两位年份
+# %m - 月份(01-12)  %d - 日期(01-31)
+# %H - 小时(00-23)  %I - 小时(01-12)
+# %M - 分钟(00-59)  %S - 秒(00-59)
+# %A - 完整星期名  %a - 缩写星期名
+# %B - 完整月份名  %b - 缩写月份名
+# %p - AM/PM
+
+# 将字符串解析为结构化时间
+str_time = '2024-01-15 14:30:00'
+parsed_time = time.strptime(str_time, '%Y-%m-%d %H:%M:%S')
+print("解析时间:", parsed_time)
+
+# 获取可读的时间字符串
+print("可读时间:", time.asctime(local_time))
+print("当前时间:", time.ctime())
+
+# 性能计时
+start = time.perf_counter()
+time.sleep(0.1)
+end = time.perf_counter()
+print(f"耗时: {end - start:.4f} 秒")
+
+# 获取进程时间
+print("进程时间:", time.process_time())
+
+# 自定义模块
+# 同级模块
+# 非同级模块
+# import sys
+# sys.path.append("../") #把指定目录也变成工作目录
